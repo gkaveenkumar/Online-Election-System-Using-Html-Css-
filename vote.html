@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cast Your Vote</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="vote.html" class="active">Vote</a></li>
+    </ul>
+  </nav>
+
+  <!-- Voting Section -->
+  <section class="voting-section">
+    <h2>Cast Your Vote</h2>
+    <div class="candidate-table">
+
+      <!-- Candidate 1 -->
+      <div class="candidate-row">
+        <div class="candidate-sno">1</div>
+        <div class="candidate-img-container">
+          <img src="th (1).jpeg" alt="John Doe" class="candidate-img">
+        </div>
+        <div class="candidate-content">
+          <h3>John Doe</h3>
+          <p>Experienced leader focused on economic growth, healthcare, and sustainability.</p>
+        </div>
+        <div class="candidate-vote">
+          <input type="radio" name="candidate" value="John Doe">
+        </div>
+      </div>
+
+      <!-- Candidate 2 -->
+      <div class="candidate-row">
+        <div class="candidate-sno">2</div>
+        <div class="candidate-img-container">
+          <img src="th (2).jpeg" alt="Jane Smith" class="candidate-img">
+        </div>
+        <div class="candidate-content">
+          <h3>Jane Smith</h3>
+          <p>Community advocate with a passion for education and social justice.</p>
+        </div>
+        <div class="candidate-vote">
+          <input type="radio" name="candidate" value="Jane Smith">
+        </div>
+      </div>
+
+      <!-- Candidate 3 -->
+      <div class="candidate-row">
+        <div class="candidate-sno">3</div>
+        <div class="candidate-img-container">
+          <img src="th.jpeg" alt="Alex Johnson" class="candidate-img">
+        </div>
+        <div class="candidate-content">
+          <h3>Alex Johnson</h3>
+          <p>Innovator and technology expert dedicated to modernizing infrastructure.</p>
+        </div>
+        <div class="candidate-vote">
+          <input type="radio" name="candidate" value="Alex Johnson">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Submit Vote Button -->
+    <a href="thankyou.html" class="vote-button">Submit Vote</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2023 Election Election System | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    fetch('submit_vote.php', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ candidate: selectedCandidate.value }),
+})
+.then(response => response.json())
+.then(data => {
+  if (data.success) {
+    window.location.href = "thankyou.html"; // Redirect to Thank You page
+  } else {
+    alert("There was an error submitting your vote. Please try again.");
+  }
+})
+.catch(err => console.error("Error:", err));
+
+  </script>
+
+</body>
+</html>
